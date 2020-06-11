@@ -29,6 +29,10 @@ contract Ownable {
         // make sure the new owner is a real address
         emit OwnershipTransfered(msg.sender, _owner);
     }
+
+    function contractOwner() public view returns(address) {
+      return _owner;
+    }
 }
 
 //  Create a Pausable contract that inherits from the Ownable contract
@@ -152,7 +156,7 @@ contract ERC721 is Pausable, ERC165 {
         // require the given address to not be the owner of the tokenId
         require(ownerOf(tokenId) != to);
         // require the msg sender to be the owner of the contract or isApprovedForAll() to be true
-        require(_isApprovedOrOwner(msg.sender, tokenId)); 
+        require(contractOwner() == msg.sender || isApprovedForAll(to, msg.sender));
         // add 'to' address to token approvals
         _tokenApprovals[tokenId] = to;
         // emit Approval Event
