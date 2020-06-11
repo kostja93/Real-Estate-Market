@@ -499,25 +499,32 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
     }
 
     // TODO: Create an internal function to set the tokenURI of a specified tokenId
-    // It should be the _baseTokenURI + the tokenId in string form
-    // TIP #1: use strConcat() from the imported oraclizeAPI lib to set the complete token URI
-    // TIP #2: you can also use uint2str() to convert a uint to a string
-        // see https://github.com/oraclize/ethereum-api/blob/master/oraclizeAPI_0.5.sol for strConcat()
-    // require the token exists before setting
+    function setTokenURI(uint256 tokenId) internal {
+        // It should be the _baseTokenURI + the tokenId in string form
+        // TIP #1: use strConcat() from the imported oraclizeAPI lib to set the complete token URI
+        // TIP #2: you can also use uint2str() to convert a uint to a string
+            // see https://github.com/oraclize/ethereum-api/blob/master/oraclizeAPI_0.5.sol for strConcat()
+        string memory fullTokenURI = strConcat(_baseTokenURI, uint2str(tokenId));
+        // require the token exists before setting
+        require(_exists(tokenId));
+        _tokenURIs[tokenId] = fullTokenURI;
+    }
 
 }
 
 // Create CustomERC721Token contract that inherits from the ERC721Metadata contract. You can name this contract as you please
-contract ERC721MintableComplete is ERC721Metadata("Real Estate Market", "REM", "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone_images/0.jpg") {
+contract ERC721MintableComplete is ERC721Metadata("Real Estate Market", "REM", "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/") {
     //  1) Pass in appropriate values for the inherited ERC721Metadata contract
     //      - make the base token uri: https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/
     //  2) create a public mint() that does the following:
-    function mint(address to, string memory tokenURI) public onlyOwner {
+    function mint() public onlyOwner returns(bool){
         //      -takes in a 'to' address, tokenId, and tokenURI as parameters
         //      -returns a true boolean upon completion of the function
         //      -calls the superclass mint and setTokenURI functions
+        address to = msg.sender;
+        uint256 tokenId = totalSupply();
+        super._mint(to, tokenId); 
+        setTokenURI(tokenId);
+        return true;
     }
 }
-
-
-
