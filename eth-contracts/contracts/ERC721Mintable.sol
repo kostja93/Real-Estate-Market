@@ -235,7 +235,7 @@ contract ERC721 is Pausable, ERC165 {
         _tokenOwner[tokenId] = to;
         _ownedTokensCount[to].increment();
 
-        // TODO emit Transfer event
+        // emit Transfer event
         emit Transfer(address(0), to, tokenId);
     }
 
@@ -243,15 +243,22 @@ contract ERC721 is Pausable, ERC165 {
     // TIP: remember the functions to use for Counters. you can refresh yourself with the link above
     function _transferFrom(address from, address to, uint256 tokenId) internal {
 
-        // TODO: require from address is the owner of the given token
+        // require from address is the owner of the given token
+        require(_tokenOwner[tokenId] == from);
 
-        // TODO: require token is being transfered to valid address
+        // require token is being transfered to valid address
+        require(!to.isContract() && to != address(0));
         
-        // TODO: clear approval
+        // clear approval
+        _tokenApprovals[tokenId] = address(0);
 
-        // TODO: update token counts & transfer ownership of the token ID 
+        // update token counts & transfer ownership of the token ID 
+        _ownedTokensCount[from].decrement();
+        _ownedTokensCount[to].increment();
+        _tokenOwner[tokenId] = to;
 
-        // TODO: emit correct event
+        // emit correct event
+        emit Transfer(from, to, tokenId);
     }
 
     /**
