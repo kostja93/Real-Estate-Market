@@ -9,7 +9,7 @@ contract('TestERC721Mintable', accounts => {
         beforeEach(async function () { 
             this.contract = await ERC721MintableComplete.new({from: account_one});
             for(let i = 0; i < 5; i++) {
-              this.contract.mint({ from: account_one })
+              this.contract.mint(account_one, { from: account_one })
             }
         })
 

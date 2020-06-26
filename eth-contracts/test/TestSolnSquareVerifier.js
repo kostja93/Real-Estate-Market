@@ -16,7 +16,7 @@ contract('Test SolnSquareVerifier', accounts => {
   it('mints a token', async () => {
     const verifier = await SquareVerifier.new({ from: accounts[0] })
     const contract = await SolnSquareVerifier.new(verifier.address, { from: accounts[0] })
-    await contract.mint({ from: accounts[0]})
+    await contract.mint(accounts[0], { from: accounts[0]})
     assert.equal(await contract.totalSupply(), 1)
   })
 })

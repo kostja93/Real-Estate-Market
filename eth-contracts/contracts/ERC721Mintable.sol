@@ -521,11 +521,10 @@ contract ERC721MintableComplete is ERC721Metadata("Real Estate Market", "REM", "
     //  1) Pass in appropriate values for the inherited ERC721Metadata contract
     //      - make the base token uri: https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/
     //  2) create a public mint() that does the following:
-    function mint() public onlyOwner returns(bool){
+    function mint(address to) public onlyOwner returns(bool){
         //      -takes in a 'to' address, tokenId, and tokenURI as parameters
         //      -returns a true boolean upon completion of the function
         //      -calls the superclass mint and setTokenURI functions
-        address to = msg.sender;
         uint256 tokenId = totalSupply();
         super._mint(to, tokenId); 
         setTokenURI(tokenId);
