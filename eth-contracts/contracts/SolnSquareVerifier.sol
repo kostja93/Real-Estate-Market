@@ -31,6 +31,7 @@ contract SolnSquareVerifier is ERC721MintableComplete {
 
   // TODO Create a function to add the solutions to the array and emit the event
   function addSolution(uint256 index, address callee) public {
+    // if (verifierContract.verifyTx(ADD STUFF))
     solutions.push(Solution({ index: index, callee: callee }));
     emit SolutionAdded(index, callee);
   }
