@@ -5,7 +5,7 @@ contract('SquareVerifier', accounts => {
   // Test verification with correct proof
   // - use the contents from proof.json generated from zokrates steps
   it('verifies with correct proof' , async () => {
-    const { proof, inputs } = require('./proof.json')
+    const { proof, inputs } = require('./proof3.json')
     const contract = await SquareVerifier.new({ from: accounts[0] })
     assert.equal(await contract.verifyTx.call(proof.a, proof.b, proof.c, inputs), true)
   })
