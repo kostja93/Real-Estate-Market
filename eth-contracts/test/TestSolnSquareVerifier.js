@@ -6,9 +6,10 @@ contract('Test SolnSquareVerifier', accounts => {
   it('adds a solution', async () => {
     const verifier = await SquareVerifier.new({ from: accounts[0] })
     const contract = await SolnSquareVerifier.new(verifier.address, { from: accounts[0] })
+    const { proof, inputs } = require('./proof1.json')
     let solutionAdded = false;
     contract.getPastEvents('SolutionAdded').then(() => solutionAdded = true )
-    await contract.addSolution(9, accounts[1], { from: accounts[1] })
+    await contract.addSolution(proof.a, proof.b, proof.c, inputs, { from: accounts[1] })
     assert.ok(solutionAdded)
   })
 

@@ -10,7 +10,7 @@ contract Verifier {
 contract SolnSquareVerifier is ERC721MintableComplete {
   // TODO define a solutions struct that can hold an index & an address
   struct Solution {
-    uint256 index;
+    bytes32 index;
     address callee;
   }
 
@@ -21,7 +21,7 @@ contract SolnSquareVerifier is ERC721MintableComplete {
   mapping(address => Solution[]) private uniqueSolutions;
 
   // TODO Create an event to emit when a solution is added
-  event SolutionAdded(uint256 index, address callee);
+  event SolutionAdded(bytes32 index, address callee);
 
   Verifier private verifierContract;
 
@@ -30,9 +30,10 @@ contract SolnSquareVerifier is ERC721MintableComplete {
   }
 
   // TODO Create a function to add the solutions to the array and emit the event
-  function addSolution(uint256 index, address callee) public {
-    // if (verifierContract.verifyTx(ADD STUFF))
-    solutions.push(Solution({ index: index, callee: callee }));
+  function addSolution(uint[2] memory a, uint[2][2] memory b, uint[2] memory c, uint[2] memory inputs) public {
+    require(verifierContract.verifyTx(a, b, c, inputs) == true);
+    bytes32 index = 0x0;
+    address callee = msg.sender;
     emit SolutionAdded(index, callee);
   }
 

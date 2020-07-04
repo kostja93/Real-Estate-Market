@@ -18,7 +18,7 @@ contract('SquareVerifier', accounts => {
 
   // Test verification with incorrect proof
   it('does not verify with incorrect proof' , async () => {
-    const { proof, inputs } = require('./proof.json')
+    const { proof, inputs } = require('./proof3.json')
     const contract = await SquareVerifier.new({ from: accounts[0] })
     // changed inputs[0] to 10
     inputs[0] = "0x000000000000000000000000000000000000000000000000000000000000000a"
