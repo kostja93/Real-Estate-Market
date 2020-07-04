@@ -18,7 +18,7 @@ contract SolnSquareVerifier is ERC721MintableComplete {
   Solution[] private solutions;
 
   // TODO define a mapping to store unique solutions submitted
-  mapping(address => Solution[]) private uniqueSolutions;
+  mapping(bytes32 => address) private uniqueSolutions;
 
   // TODO Create an event to emit when a solution is added
   event SolutionAdded(bytes32 index, address callee);
@@ -31,9 +31,12 @@ contract SolnSquareVerifier is ERC721MintableComplete {
 
   // TODO Create a function to add the solutions to the array and emit the event
   function addSolution(uint[2] memory a, uint[2][2] memory b, uint[2] memory c, uint[2] memory inputs) public {
-    require(verifierContract.verifyTx(a, b, c, inputs) == true);
-    bytes32 index = 0x0;
+    require(verifierContract.verifyTx(a, b, c, inputs) == true, "Invalid solution");
+    bytes32 index = sha256(abi.encodePacked(a, b, c, inputs));
+    require(uniqueSolutions[index] == address(0), "Solution already taken");
     address callee = msg.sender;
+    uniqueSolutions[index] = callee;
+    solutions.push(Solution({ index: index, callee: callee}));
     emit SolutionAdded(index, callee);
   }
 
