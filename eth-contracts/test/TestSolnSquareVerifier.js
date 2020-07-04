@@ -20,4 +20,14 @@ contract('Test SolnSquareVerifier', accounts => {
     await contract.mint(accounts[0], { from: accounts[0]})
     assert.equal(await contract.totalSupply(), 1)
   })
+
+  it('fails to mint token without solution', async () => {
+    const verifier = await SquareVerifier.new({ from: accounts[0] })
+    const contract = await SolnSquareVerifier.new(verifier.address, { from: accounts[0] })
+    try {
+      await contract.mint(accounts[0], { from: accounts[0]})
+    } catch(e) {
+      assert.ok(true)
+    }
+  })
 })

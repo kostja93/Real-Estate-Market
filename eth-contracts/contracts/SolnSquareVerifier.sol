@@ -42,6 +42,7 @@ contract SolnSquareVerifier is ERC721MintableComplete {
 
   // TODO Create a function to mint new NFT only after the solution has been verified
   function mint(address to) public onlyOwner returns(bool) {
+    require(totalSupply() <= solutions.length, "Not enought solutions provided");
     super.mint(to);
   }
 }
