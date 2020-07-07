@@ -1,8 +1,8 @@
 const HDWalletProvider = require('truffle-hdwallet-provider')
 const web3 = require('web3')
-const { infuraKey, mnemonic, url } = require('./localDeployment.json')
-const CONTRACT_ADDRESS = '0x02c76dbCBb89d6fE504Ed33AAfAAE2850972316d'
-const OWNER_ADDRESS = '0xe53F9AbE05157005466aFE53736d489958b9e0BE'
+const { infuraKey, mnemonic, url } = require('./deployment.json')
+const CONTRACT_ADDRESS = '0x579D702D6CaF6FcE8fC8B936E9360cdC31bC1C5B'
+const OWNER_ADDRESS = '0x393E37d66c5e0D58E34EAd4A5f2505a1d2EfDa95'
 const NETWORK = 'rinkeby'
 const NUM_CREATURES = 10
 const CONTRACT_ABI = require('./build/contracts/SolnSquareVerifier.json').abi
