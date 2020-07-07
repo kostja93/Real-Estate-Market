@@ -2,9 +2,9 @@
 
 The capstone will build upon the knowledge you have gained in the course in order to build a decentralized housing product. 
 
-* SolnSquareVerifier Address: [0xeba07d3f350e62979e4aaa9cf12e2dc2b61549e7](https://rinkeby.etherscan.io/address/0xeba07d3f350e62979e4aaa9cf12e2dc2b61549e7)
-* SquareVerifier Address: [0x17a0f94fd1ff11da55d65814664dc9fba77656ba](https://rinkeby.etherscan.io/address/0x17a0f94fd1ff11da55d65814664dc9fba77656ba)
-* OpenSea Market: [here](https://rinkeby.opensea.io/assets/unidentified-contract-v477)
+* SolnSquareVerifier Address: [0x579D702D6CaF6FcE8fC8B936E9360cdC31bC1C5B](https://rinkeby.etherscan.io/address/0x579D702D6CaF6FcE8fC8B936E9360cdC31bC1C5B)
+* SquareVerifier Address: [0x05626b1a093781d4581cf6be462602AF0ae4BD92](https://rinkeby.etherscan.io/address/0x05626b1a093781d4581cf6be462602AF0ae4BD92)
+* OpenSea Market: [here](https://rinkeby.opensea.io/assets/unidentified-contract-v562)
 
 # Project Resources
 
